@@ -9,8 +9,8 @@ Unity has the testing suite.
 
 ## Individual exercises
 
-* 1.01
-* 1.02
+* 1.01 *done*
+* 1.02 *done*
 * 1.04
 * 1.05
 * 1.05
