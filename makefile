@@ -7,3 +7,4 @@ all:
 	$(CC) Src/1.04.c -o Build/1-04
 	$(CC) Src/1.05.c -o Build/1-05
 	$(CC) Src/1.06.c -o Build/1-06
+	$(CC) Src/1.07.c -o Build/1-07
