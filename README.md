@@ -16,7 +16,7 @@ Unity has the testing suite.
 * 1.05 *done*
 * 1.06 *done*
 * 1.07 *done*
-* 1.08
+* 1.08 *done*
 * 1.09
 * 1.10
 * 1.11
