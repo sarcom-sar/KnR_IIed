@@ -7,10 +7,9 @@
 
 int main(void) {
   int nchar[127] = {0}; // entire ascii table
-  int c, inspace, max_height, x, i;
+  int c, inspace, max_height, x;
   max_height = 0;
   x = 0;
-  i = 0;
 
   while ((c = getchar()) != EOF) {
     if (c == ' ' || c == '\n' || c == '\t') {
