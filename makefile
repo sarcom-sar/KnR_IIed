@@ -33,7 +33,10 @@ all: 1-15.o 1-15func.o
 	$(CC) $(CFLAGS) -c $? -o $(BIN)/$@
 
 test:
-	$(CC) $(CFLAGS) -o $(BUILD)/test1-15 $(TEST)/Test1-15.c $(SRC)/1-15func.c $(UNITY)/unity.c
+	$(CC) $(CFLAGS) -o $(BUILD)/test-1-15 $(TEST)/Test1-15.c $(SRC)/1-15func.c $(UNITY)/unity.c
+
+run-test:
+	$(BUILD)/./test-*
 
 clean:
 	$(RM) $(BUILD)/* $(BIN)/*
