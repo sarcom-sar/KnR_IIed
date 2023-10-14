@@ -1,5 +1,5 @@
 #include "../Unity/unity.h"
-#include "../Src/1-15func.h"
+#include "../Src/1-15func.c"
 
 void setUp(void) {}
 void tearDown(void) {}

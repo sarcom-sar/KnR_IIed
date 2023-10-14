@@ -21,10 +21,10 @@ all: $(executables)
 
 test: $(tests)
 
-Test-1-15: $(TEST)/Test-1-15.c $(SRC)/1-15func.c $(UNITY)/unity.c
+Test-1-15: $(TEST)/Test-1-15.c $(UNITY)/unity.c
 	$(CC) $(CFLAGS) -o $(BUILD)/$@ $?
 
-Test-1-16: $(TEST)/Test-1-16.c $(SRC)/1-16func.c $(UNITY)/unity.c
+Test-1-16: $(TEST)/Test-1-16.c $(UNITY)/unity.c
 	$(CC) $(CFLAGS) -o $(BUILD)/$@ $?
 
 clean:
