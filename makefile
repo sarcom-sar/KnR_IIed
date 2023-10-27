@@ -7,7 +7,7 @@ BIN = ./Bin
 UNITY = ./Unity
 TEST = ./Test
 
-executables = 1-01 1-02 1-03 1-04 1-05 1-06 1-07 1-08 1-09 1-10 1-11 1-12 1-13a 1-13b 1-14a 1-14b 1-15 1-16 1-17 1-18 1-19 1-20
+executables = 1-01 1-02 1-03 1-04 1-05 1-06 1-07 1-08 1-09 1-10 1-11 1-12 1-13a 1-13b 1-14a 1-14b 1-15 1-16 1-17 1-18 1-19 1-20 1-21
 tests = Test-1-15 Test-1-16 Test-1-18 Test-1-19 Test-1-20
 
 all: $(executables) 
@@ -22,6 +22,7 @@ all: $(executables)
 1-18: $(SRC)/1-18.c $(SRC)/1-16func.c $(SRC)/1-18func.c
 1-19: $(SRC)/1-19.c $(SRC)/1-16func.c $(SRC)/1-19func.c
 1-20: $(SRC)/1-20.c $(SRC)/1-16func.c $(SRC)/1-20func.c
+1-21: $(SRC)/1-21.c $(SRC)/1-16func.c $(SRC)/1-21func.c
 
 test: $(tests)
 

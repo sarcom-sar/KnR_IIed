@@ -1,4 +1,5 @@
 #include "1-20func.h"
+#include <stdio.h>
 
 #define TAB 4
 
