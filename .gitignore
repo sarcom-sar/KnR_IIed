@@ -4,3 +4,4 @@
 !.gitignore
 !makefile
 *.o
+.ccls-cache

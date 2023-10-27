@@ -10,7 +10,7 @@ int main(void) {
 
   while ((len = getaline(line, MAXLINE)) > 0) {
     remove_trailing(line, len);
-    printf("%s#", line);
+    printf("%s", line);
   }
 
   return 0;
