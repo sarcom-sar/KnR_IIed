@@ -12,6 +12,9 @@ int main(void) {
   // len is truly useless here but it tests the program
   while ((len = getaline(line, MAXLINE)) > 0) {
     /* one line comment to check correctness of it all */len = trim_comments(line, &in_multi_line_comment);
+    /* fully flesht
+       multi line
+       comment */
     printf("%s", line);
   }
 }
