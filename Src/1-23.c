@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "1-16func.h"
 #include "1-23func.h"
-
+// test
 #define MAXLINE 1000
 
 int main(void) {
@@ -11,9 +11,7 @@ int main(void) {
 
   // len is truly useless here but it tests the program
   while ((len = getaline(line, MAXLINE)) > 0) {
-    /* multi line comment to check
-     correctness of it all
-    */ trim_comments(line, &in_multi_line_comment);
-    putchar('\n');
+    /* one line comment to check correctness of it all */len = trim_comments(line, &in_multi_line_comment);
+    printf("%s", line);
   }
 }

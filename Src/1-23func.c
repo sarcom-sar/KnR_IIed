@@ -1,29 +1,34 @@
 #include "1-23func.h"
 
 int trim_comments(char line[], int* in_multi_line_comment) {
-  char curr_char;
-  char prev_char = 0;
   int i = 0;
+  int save_pos = 0;
 
-  while (line[i] != '\0') {
-    curr_char = line[i];
-    if (i > 0)
-      prev_char = line[i - 1];
-    if (curr_char == '/' && prev_char == '/') {
-      break;
+  for (; line[i] != '\0'; i++) {
+    if (i > 0) {
+      if (line[i-1] == '/' && line[i] == '/') {
+        line[i-1] = '\n';
+        line[i] = '\0';
+        break;
+      }
+      if (line[i] == '*' && line[i-1] == '/') {
+        *in_multi_line_comment = 1;
+        save_pos = i-1;
+      }
+      if (line[i] == '/' && line[i-1] == '*') {
+        *in_multi_line_comment = 0;
+        i++;
+        while (line[i] != '\0') {
+          line[save_pos] = line[i];
+          save_pos++;
+          i++;
+        }
+        line[save_pos] = '\0';
+        break;
+      }
+      // drop the comment until it ends
+      if (*in_multi_line_comment == 1) continue;
     }
-
-    if (curr_char == '*' && prev_char == '/') {
-      *in_multi_line_comment = 1;
-    }
-    if (*in_multi_line_comment == 0) {
-      if (prev_char != '/')
-        putchar(prev_char);
-    }
-    if (curr_char == '/' && prev_char == '*') {
-      *in_multi_line_comment = 0;
-    }
-    i++;
   }
-  return 0;
+  return i;
 }
