@@ -26,11 +26,11 @@ Unity has the testing suite.
 * 1.15 *done*
 * 1.16 *done*
 * 1.17 *done*
-* 1.18
-* 1.19
-* 1.20
-* 1.21
-* 1.22
+* 1.18 *done*
+* 1.19 *done*
+* 1.20 *done*
+* 1.21 *done*
+* 1.22 *done*
 * 1.23
 * 1.24
 * 1.25
