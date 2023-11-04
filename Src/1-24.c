@@ -7,54 +7,15 @@
 int main(void) {
   int len;
   char line[MAXLINE];
-  int ignore_next;
-  int paran_balanced, curly_balanced;
-  int single_balanced, double_balanced;
-
-  ignore_next = 0;
-  paran_balanced = curly_balanced = 0;
-  single_balanced = double_balanced = 0;
+  int balance_types[4] = {0, 0, 0, 0};
 
   while ((len = getaline(line, MAXLINE)) > 0) {
-    for (int i = 0; line[i] != '\0'; i++) {
-      if (ignore_next) {
-        ignore_next = 0;
-        continue;
-      }
-      switch (line[i]) {
-      case '(':
-        paran_balanced++;
-        break;
-      case ')':
-        paran_balanced--;
-        break;
-      case '{':
-        curly_balanced++;
-        break;
-      case '}':
-        curly_balanced--;
-        break;
-      case '\"':
-        double_balanced = (double_balanced) ? 0 : 1;
-        break;
-      case '\'':
-        single_balanced = (single_balanced) ? 0 : 1;
-        break;
-      case '\\':
-        ignore_next = 1;
-        break;
-      default:
-        break;
-      }
-    }
+    check_balance(line, balance_types);
   }
-  printf((paran_balanced) ? "parans are not balanced\n"
-                          : "parans are balanced\n");
-  printf((curly_balanced) ? "curlies are not balanced\n"
-                          : "curlies are balanced\n");
-  printf((double_balanced) ? "doubles are not balanced\n"
-                           : "doubles are balanced\n");
-  printf((single_balanced) ? "singles are not balanced\n"
-                           : "singles are balanced\n");
+
+  printf("parenthesis %s balanced\n", ((balance_types[0]) ? "are not" : "are"));
+  printf("curly braces %s balanced\n", ((balance_types[1]) ? "are not" : "are"));
+  printf("double quotations %s balanced\n", ((balance_types[2]) ? "are not" : "are"));
+  printf("single quotations %s balanced\n", ((balance_types[3]) ? "are not" : "are"));
   return 0;
 }
