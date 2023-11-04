@@ -8,9 +8,9 @@ UNITY = ./Unity
 TEST = ./Test
 
 executables = 1-01 1-02 1-03 1-04 1-05 1-06 1-07 1-08 1-09 1-10 1-11 1-12 1-13a 1-13b 1-14a 1-14b 1-15 1-16 1-17 1-18 1-19 1-20 1-21 1-22 1-23 1-24
-tests = Test-1-15 Test-1-16 Test-1-18 Test-1-19 Test-1-20 Test-1-21 Test-1-22 Test-1-23
+tests = Test-1-15 Test-1-16 Test-1-18 Test-1-19 Test-1-20 Test-1-21 Test-1-22 Test-1-23 Test-1-24
 
-all: $(executables) 
+all: $(executables)
 
 %: $(SRC)/%.c
 	$(CC) $(CFLAGS) -o $(BUILD)/$@ $?
@@ -25,7 +25,7 @@ all: $(executables)
 1-21: $(SRC)/1-21.c $(SRC)/1-16func.c $(SRC)/1-21func.c
 1-22: $(SRC)/1-22.c $(SRC)/1-16func.c $(SRC)/1-22func.c
 1-23: $(SRC)/1-23.c $(SRC)/1-16func.c $(SRC)/1-23func.c
-1-24: $(SRC)/1-24.c $(SRC)/1-16func.c
+1-24: $(SRC)/1-24.c $(SRC)/1-16func.c $(SRC)/1-24func.c
 
 test: $(tests)
 
@@ -51,6 +51,9 @@ Test-1-22: $(TEST)/Test-1-22.c $(UNITY)/unity.c
 	$(CC) $(CFLAGS) -o $(BUILD)/$@ $?
 
 Test-1-23: $(TEST)/Test-1-23.c $(UNITY)/unity.c
+	$(CC) $(CFLAGS) -o $(BUILD)/$@ $?
+
+Test-1-24: $(TEST)/Test-1-24.c $(UNITY)/unity.c
 	$(CC) $(CFLAGS) -o $(BUILD)/$@ $?
 
 clean:
