@@ -1,38 +1,82 @@
 #include "1-24func.h"
 
-#define ESCAPE '\\'
+#define ESCAPE       '\\'
+#define DOUBLE_QUOT  '\"'
+#define SINGLE_QUOT  '\''
+#define PAREN_START  '('
+#define PAREN_END    ')'
+#define SQUARE_START '['
+#define SQUARE_END   ']'
+#define CURLY_START  '{'
+#define CURLY_END    '}'
 
-int check_balance(char line[], int output[4]) {
-  is_two_balanced(line, "()", &output[0]);
-  is_two_balanced(line, "{}", &output[1]);
-  is_one_balanced(line, '\"', &output[2]);
-  is_one_balanced(line, '\'', &output[3]);
+int init_balance_queue(struct balance_queue* bq) {
+  bq->last_point = MAX;
+  for (int i = 0; i < MAX; i++) {
+    bq->queue[i][0] = 0;
+    bq->queue[i][1] = 0;
+    bq->queue[i][2] = 0;
+  }
   return 0;
 }
 
-int is_two_balanced(char line[], char pair[3], int* input) {
-  int ignore_next = 0;
-  for (int i = 0; line[i] != '\0'; i++) {
-    if (ignore_next) {
-      ignore_next = 0;
-      continue;
-    }
-    if (line[i] == pair[0]) (*input)++;
-    if (line[i] == pair[1]) (*input)--;
-    if (line[i] == ESCAPE) ignore_next = 1;
-  }
-  return *input;
+int init_balance_state(struct balance_state* bs) {
+  bs->curr_line = 0;
+  bs->is_escape = 0;
+  bs->is_in_quote = 0;
+  bs->queue_point = 0;
+  return 0;
 }
 
-int is_one_balanced(char line[], char thing, int* input) {
-  int ignore_next = 0;
+int check_balance(char line[], struct balance_queue* bq, \
+                  struct balance_state* bs) {
   for (int i = 0; line[i] != '\0'; i++) {
-    if (ignore_next) {
-      ignore_next = 0;
+    // skip over next character
+    if (bs->is_escape) {
+      bs->is_escape = 0;
       continue;
     }
-    if (line[i] == thing) (*input) = (*input) ? 1 : 0;
-    if (line[i] == ESCAPE) ignore_next = 1;
+    if (line[i] == ESCAPE) {
+      bs->is_escape = 1;
+    }
+    // ignore everything until closing quote
+    if (line[i] == DOUBLE_QUOT || line[i] == SINGLE_QUOT) {
+      bs->is_in_quote = (bs->is_in_quote) ? 0 : 1;
+    }
+
+    if (!(bs->is_in_quote)) {
+      switch (line[i]) {
+      case PAREN_START:
+        queue_add(line[i], i, bq, bs);
+        break;
+      case PAREN_END:
+        queue_add(line[i], i, bq, bs);
+        break;
+      case SQUARE_START:
+        queue_add(line[i], i, bq, bs);
+        break;
+      case SQUARE_END:
+        queue_add(line[i], i, bq, bs);
+        break;
+      case CURLY_START:
+        queue_add(line[i], i, bq, bs);
+        break;
+      case CURLY_END:
+        queue_add(line[i], i, bq, bs);
+        break;
+      }
+    }
   }
-  return *input;
+  bs->curr_line++;
+  return 0;
+}
+
+
+int queue_add(char ch, int i, struct balance_queue *bq,  \
+              struct balance_state *bs) {
+  bq->queue[bs->queue_point][0] = bs->curr_line;
+  bq->queue[bs->queue_point][1] = i;
+  bq->queue[bs->queue_point][2] = ch;
+  bs->queue_point++;
+  return bs->queue_point;
 }
