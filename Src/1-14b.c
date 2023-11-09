@@ -33,12 +33,13 @@ int main(void) {
   for ( ; max_height >= 0; --max_height) {
     printf("%3.d|", max_height+1);
     for (int x = SPACE; x < DEL; ++x) {
-      if (nchar[x] > 0)
+      if (nchar[x] > 0) {
         if (nchar[x] > max_height) {
           printf("# ");
         } else {
           printf("  ");
         }
+      }
     }
     putchar('\n');
   }

@@ -31,10 +31,9 @@ Unity has the testing suite.
 * 1.20 *done*
 * 1.21 *done*
 * 1.22 *done*
-* 1.23
-* 1.24
-* 1.25
-* 2.01
+* 1.23 *done*
+* 1.24 *done*
+* 2.01 *done*
 * 2.02
 * 2.03
 * 2.04

@@ -10,6 +10,6 @@ int main(void) {
     if (c == ' ') ++nb;
     if (c == '\t') ++nt;
   }
-  printf("newlines = %d\nblanks = %d\ntabs = %d\n", nl, nb, nt);
+  printf("newlines = %ld\nblanks = %ld\ntabs = %ld\n", nl, nb, nt);
   return 0;
 }
