@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-unsigned int setbits(unsigned int x, int p, int n, unsigned int y);
+#include "2-06func.h"
 
 int main(void) {
   unsigned int x = 255; // b11111111 
@@ -31,14 +30,4 @@ int main(void) {
   // 254 == b11111110
   printf("X value: %u, expected value: %u\n", setbits(x, p, n, y), 254);
   return 0;
-}
-
-// returns xx...xnnnx...xxx
-//         yy...........nnn
-// where position of first n is set by p
-unsigned int setbits(unsigned int x, int p, int n, unsigned int y) {
-  unsigned int xmask = ~0 << n;
-  unsigned int shift_by = p + 1 - n;
-  return x & ~(~xmask << shift_by) | \
-    (y & ~xmask) << shift_by;
 }
