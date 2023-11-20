@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-unsigned int right_rot(unsigned int x, int n);
+#include "2-08func.h"
 
 int main(void) {
   unsigned int x = 254; // b11111110
@@ -26,17 +25,4 @@ int main(void) {
   printf("X value: %u, expected value: %u\n", right_rot(x, n), 7);
 
   return 0;
-}
-
-// returns xx...xnnnx...xxx
-// where position of first n is set by p
-unsigned int right_rot(unsigned int x, int n) {
-  while (n > 0) {
-    if ((x & 1) == 1)
-      x = (x >> 1) | ~(~0U >> 1);
-    else
-      x = (x >> 1);
-    n--;
-  }
-  return x;
 }
