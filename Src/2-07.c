@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-unsigned int invert(unsigned int x, int p, int n);
+#include "2-07func.h"
 
 int main(void) {
   unsigned int x = 255; // b11111111
@@ -26,15 +25,7 @@ int main(void) {
   n = 1;
   printf("X = %u, p = %d, n = %d\n", x, p, n);
   // 15 == b1111
-  printf("X value: %u, expected value: %u\n", invert(x, p, n), 4);
+  printf("X value: %u, expected value: %u\n", invert(x, p, n), 15);
 
   return 0;
-}
-
-// returns xx...xnnnx...xxx
-// where position of first n is set by p
-unsigned int invert(unsigned int x, int p, int n) {
-  unsigned int xmask = ~0 << n;
-  unsigned int shift_by = p + 1 - n;
-  return x ^ (~xmask << shift_by);
 }
