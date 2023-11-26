@@ -28,23 +28,6 @@ int init_balance_state(struct balance_state* bs) {
   return 0;
 }
 
-int queue_add(char ch, int i, struct balance_queue *bq,  \
-              struct balance_state *bs) {
-  bq->queue[bs->queue_point][0] = bs->curr_line;
-  bq->queue[bs->queue_point][1] = i;
-  bq->queue[bs->queue_point][2] = ch;
-  bs->queue_point++;
-  return bs->queue_point;
-}
-
-int queue_zero(int point, struct balance_queue *bq) {
-  bq->queue[point][0] = 0;
-  bq->queue[point][1] = 0;
-  bq->queue[point][2] = 0;
-  return 0;
-}
-
-
 int check_balance(char line[], struct balance_queue* bq, \
                   struct balance_state* bs) {
   for (int i = 0; line[i] != '\0'; i++) {
@@ -89,36 +72,44 @@ int check_balance(char line[], struct balance_queue* bq, \
 }
 
 
-int reduce_queue(struct balance_queue* bq, struct balance_state* bs) {
-  int is_found = 0;
-  for (int i = (bs->queue_point)-1; i >= 0; i--) {
-    switch(bq->queue[i][2]) {
-    case PAREN_START:
-      find_prev(i, &is_found, PAREN_END, bq);
-      break;
-    case SQUARE_START:
-      find_prev(i, &is_found, SQUARE_END, bq);
-      break;
-    case CURLY_START:
-      find_prev(i, &is_found, CURLY_END, bq);
-      break;
-    }
-  }
-  return 0;
+int queue_add(char ch, int i, struct balance_queue *bq,  \
+              struct balance_state *bs) {
+  bq->queue[bs->queue_point][0] = bs->curr_line;
+  bq->queue[bs->queue_point][1] = i;
+  bq->queue[bs->queue_point][2] = ch;
+  bs->queue_point++;
+  return bs->queue_point;
 }
 
-int find_prev(int i, int* is_found, char opposite_type, struct balance_queue* bq) {
-  for (int save = i; save >= 0; save--) {
-    // zero this point
-    if (bq->queue[save][2] == opposite_type) {
-      queue_zero(save, bq);
-      *is_found = 1;
+void zero_el_queue(struct balance_queue* bq, int save) {
+  bq->queue[save][0] = 0;
+  bq->queue[save][1] = 0;
+  bq->queue[save][2] = 0;
+}
+
+void reduce_lines(struct balance_queue *bq, int queue_point) {
+  for (int i = queue_point - 1; i >= 0; i--) {
+    switch (bq->queue[i][2]) {
+    case PAREN_END:
+      check_for_unmatched(i, bq, PAREN_START);
+      break;
+    case CURLY_END:
+      check_for_unmatched(i, bq, CURLY_START);
+      break;
+    case SQUARE_END:
+      check_for_unmatched(i, bq, SQUARE_START);
       break;
     }
   }
-  if (*is_found) {
-    queue_zero(i, bq);
-    *is_found = 0;
+}
+
+void check_for_unmatched(int pos, struct balance_queue *bq, char check_for) {
+  for (int save = pos; save >= 0; save--) {
+    // zero this point and itself
+    if (bq->queue[save][2] == check_for) {
+      zero_el_queue(bq, save);
+      zero_el_queue(bq, pos);
+      break;
+    }
   }
-  return *is_found;
 }

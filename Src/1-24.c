@@ -11,7 +11,7 @@ int main(void) {
   struct balance_queue b_que;
   struct balance_state b_stat;
 
-  //init 
+  //init
   init_balance_queue(&b_que);
   init_balance_state(&b_stat);
 
@@ -20,9 +20,7 @@ int main(void) {
     check_balance(line, &b_que, &b_stat);
   }
 
-  // reduce lines
-  reduce_queue(&b_que, &b_stat);
-
+  reduce_lines(&b_que, b_stat.queue_point);
   // print lines
   for (int i = 0; i < b_stat.queue_point; i++) {
     if (b_que.queue[i][2] != 0) {

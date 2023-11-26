@@ -18,10 +18,9 @@ struct balance_state {
 int init_balance_queue(struct balance_queue* bq);
 int init_balance_state(struct balance_state* bs);
 int queue_add(char ch, int i, struct balance_queue* bq, struct balance_state* bs);
-int queue_zero(int point, struct balance_queue* bq);
-
 int check_balance(char line[], struct balance_queue* bq, struct balance_state* bs);
-int reduce_queue(struct balance_queue* bq, struct balance_state* bs);
-int find_prev(int i, int* is_found, char opposite_type, struct balance_queue* bq);
+void zero_el_queue(struct balance_queue* bq, int save);
+void reduce_lines(struct balance_queue* bq, int queue_point);
+void check_for_unmatched(int pos, struct balance_queue* bq, char check_for);
 
 #endif
