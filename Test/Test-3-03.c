@@ -74,8 +74,20 @@ void test_expand_corner_case(void) {
   TEST_ASSERT_EQUAL_STRING("A98", expanded_alnum);
 }
 
+void test_is_valid_char(void) {
+  TEST_ASSERT_EQUAL_INT(0, is_valid_char('\n'));
+  TEST_ASSERT_EQUAL_INT(0, is_valid_char('['));
+  TEST_ASSERT_EQUAL_INT(1, is_valid_char('0'));
+  TEST_ASSERT_EQUAL_INT(1, is_valid_char('9'));
+  TEST_ASSERT_EQUAL_INT(1, is_valid_char('a'));
+  TEST_ASSERT_EQUAL_INT(1, is_valid_char('A'));
+  TEST_ASSERT_EQUAL_INT(1, is_valid_char('z'));
+  TEST_ASSERT_EQUAL_INT(1, is_valid_char('Z'));
+}
+
 int main(void) {
   UNITY_BEGIN();
+  RUN_TEST(test_is_valid_char);
   RUN_TEST(test_expand_forwards);
   RUN_TEST(test_expand_backwards);
   RUN_TEST(test_expand_no_expansion);
