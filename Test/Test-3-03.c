@@ -85,9 +85,16 @@ void test_is_valid_char(void) {
   TEST_ASSERT_EQUAL_INT(1, is_valid_char('Z'));
 }
 
+void test_len_between(void) {
+  TEST_ASSERT_EQUAL_INT(0, len_between('a', 'a'));
+  TEST_ASSERT_EQUAL_INT(1, len_between('b', 'a'));
+  TEST_ASSERT_EQUAL_INT(-1, len_between('a', 'b'));
+}
+
 int main(void) {
   UNITY_BEGIN();
   RUN_TEST(test_is_valid_char);
+  RUN_TEST(test_len_between);
   RUN_TEST(test_expand_forwards);
   RUN_TEST(test_expand_backwards);
   RUN_TEST(test_expand_no_expansion);
