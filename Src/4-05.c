@@ -1,6 +1,6 @@
-/* Exercise 4-4. Add the commands to print the top elements of the */
-/* stack without popping, to duplicate it, and to swap the top two */
-/* elements. Add a command to clear the stack. */
+/* Add access to library functions like sin, exp, */
+/* and pow. See <math.h> in Appendix B, Section 4.Add access to library functions like sin, exp, */
+/* and pow. See <math.h> in Appendix B, Section 4. */
 
 #include "4-05func.h"
 #include <ctype.h>
