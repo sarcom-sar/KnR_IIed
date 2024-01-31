@@ -2,6 +2,7 @@
 /* stack without popping, to duplicate it, and to swap the top two */
 /* elements. Add a command to clear the stack. */
 
+#include "4-0-RPN.h"
 #include "4-03func.h"
 #include <ctype.h>
 #include <stdio.h>

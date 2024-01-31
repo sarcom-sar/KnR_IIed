@@ -1,28 +1,9 @@
+#include "4-0-RPN.h"
 #include "4-05func.h"
 #include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
-
-int sp = 0;
-double val[MAXVAL];
-char buf[BUFSIZE];
-int bufp = 0;
-
-void push(double f) {
-  if (sp < MAXVAL)
-    val[sp++] = f;
-  else
-    printf("error: stack full, can't push %g\n", f);
-}
-
-double pop(void) {
-  if (sp > 0)
-    return val[--sp];
-  else
-    printf("error: stack empty\n");
-  return 0.00;
-}
 
 int getop(char s[]) {
   int i = 0;
@@ -60,15 +41,6 @@ int getop(char s[]) {
   if (c != EOF)
     ungetch(c);
   return NUMBER;
-}
-
-int getch(void) { return (bufp > 0) ? buf[--bufp] : getchar(); }
-
-void ungetch(int c) {
-  if (bufp >= BUFSIZE)
-    printf("ungetch: too many characters\n");
-  else
-    buf[bufp++] = c;
 }
 
 void handle_math(char s[]) {

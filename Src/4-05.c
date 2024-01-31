@@ -2,6 +2,7 @@
 /* and pow. See <math.h> in Appendix B, Section 4.Add access to library functions like sin, exp, */
 /* and pow. See <math.h> in Appendix B, Section 4. */
 
+#include "4-0-RPN.h"
 #include "4-05func.h"
 #include <ctype.h>
 #include <stdio.h>

@@ -2,6 +2,7 @@
 /* to provide twenty-six variables with single-letter names.) Add */
 /* a variable for the most recently printed value. */
 
+#include "4-0-RPN.h"
 #include "4-06func.h"
 #include <ctype.h>
 #include <stdio.h>
@@ -9,7 +10,7 @@
 
 #define MAXOP 100
 extern int sp;
-extern double varlist[26];
+double varlist[26];
 
 int main(void) {
   int type;
