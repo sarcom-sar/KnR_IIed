@@ -15,11 +15,12 @@ int getop(char s[]) {
   int i = 0;
   int c;
 
-  if (line[linep] == '\0')
+  if (line[linep] == '\0') {
     if (getaline(line, MAXLINE) == 0)
       return EOF;
     else
       linep = 0;
+  }
 
   while ((s[0] = c = line[linep++]) == ' ' || c == '\t')
     ;

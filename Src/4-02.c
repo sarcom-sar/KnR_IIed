@@ -6,9 +6,6 @@
 double my_atof(char s[]);
 
 int main(void) {
-  char line[MAXLINE];
-  double sum = 0;
-
   printf("1.2345 is %g\n", my_atof("1.2345"));
   printf("-1.2345 is %g\n", my_atof("-1.2345"));
   printf("0.00012345 is %f\n", my_atof("123.45e-6"));
