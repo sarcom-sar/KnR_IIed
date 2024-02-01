@@ -1,5 +1,5 @@
-#ifndef A406
-#define A406
+#ifndef A410
+#define A410
 
 #define IDENTIFIER '1'
 #define VARIABLE '2'
